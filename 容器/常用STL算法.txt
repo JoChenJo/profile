@@ -1,0 +1,48 @@
+#include<algorithm>    #include<vector>    #include<functional>  #include<ctime>
+
+srand((unsigned int)time(NULL)); 产生随机数 每次都不同
+
+遍历：1、for_each(v.begin(), v.end(), print01);  遍历对象所有元素；    需创建打印函数 普通函数  ：void print01(int val)  {  cout << val << " ";  }        仿函数：class print02{   public:  void operator()(int val)  ;       {  cout << val << " ";  }      }
+
+          2、transform(v.begin(), v.end(), vTarget.begin(), Transform());   将一个容器内容搬运的另一个容器中    vTarget.resize(v.size());//目标容器 需要提前开辟空间   仿函数 class Transform{   public:      int operator()(int v)    { return v; }   }
+
+查找： 1、 v.find();// 字符串中 v="Hello, world!" ; v.find("w")等于7  w在字符串中第七位   distance(str.begin(), it)；两个数据中间元素个数   vector<int>::iterator it = find(v.begin(), v.end(), 5);查找容器中是否有5这个元素 如果有*it = 5;
+
+          2、find_if();  vector<Person>::iterator it = find_if(v.begin(), v.end(), Greater20()); class Greater20{  public:   bool operator()(Person& p)    {  return p.m_Age > 20;  }  } 查找年龄大于20的   *it等于年龄大于20的目标
+
+         3、  adjacent_find()//找相邻重复元素   vector<int>::iterator pos = adjacent_find(v.begin(), v.end());  找该范围内相邻重复元素 *pos等于该元素
+
+         4、binary_search（）；查找必须是有序序列   bool ret = binary_search(v.begin(), v.end(), 9);  查找该元素范围内为9的元素;
+
+查找统计：1、int num = count(v.begin(), v.end(), 40);查找范围内40的个数;     查找统计自定义类型数据：  class Person{public:     Person(string name, int age){	this->m_Name = name；this->m_Age = age;} 
+   bool operator==(const Person& p)   { if (this->m_Age == p.m_Age)   {	return true ;}    else  { return false;  }   string m_Name;  int m_Age;};
+
+               2、int num = count_if(v.begin(), v.end(), AgeGreater20()); 查找统计大于20的元素个数   需创建虚函数：class Greater20   {public:     bool operator()(int val)   { return val > 20;}   };
+
+排序：1、sort(v.begin(), v.end(), greater<int>());降序
+
+          2、random_shuffle(v.begin(), v.end());洗牌 打乱排序顺序
+  
+          3、merge(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());  将两个有序序列v1和v2和并到vTarget中    必须是有序序列
+ 
+          4、reverse(v.begin(), v.end());   反转
+
+拷贝替换：1、copy(v1.begin(), v1.end(), v2.begin());  将v1数据拷贝到v2数据中   v2需提前开辟空间
+
+                2、replace(v.begin(), v.end(), 20, 2000); 将20替换成2000;
+
+                3、replace_if(v.begin(), v.end(), Greater30(), 3000); 将大于等于30的替换成3000;     class Greater30{  public:    bool operator()(int val)  {  return val >= 30;  }  };
+
+                4、swap(v1, v2);交换v1和v2中的数据;
+
+算数生成式算法：          1、int total = accumulate(v.begin(), v.end(), 0); 计算区间内元素累计总和   第三参数是在此基础上多加多少数
+#include<numeric>
+                                   2、fill(v.begin(), v.end(), 100);将区间元素填充成100;
+
+集合算法    1、交集   vector<int>::iterator itEnd = set_intersection(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());   需提前开辟空间vTarget.resize(min(v1.size(), v2.size()));
+
+                 2、并集  vector<int>::iterator itEnd = set_union(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());    需提前开辟空间vTarget.resize(v1.size() + v2.size());
+
+                3、差集  vector<int>::iterator itEnd = set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), vTarget.begin());   v1和v2的差集
+                             vector<int>::iterator itEnd = set_difference(v2.begin(), v2.end(), v1.begin(), v1.end(), vTarget.begin());   v2和v1的差集
+                             需提前开辟空间  vTarget.resize(max(v1.size(), v2.size()));

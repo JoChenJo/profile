@@ -1,0 +1,19 @@
+srand((unsigned int)time(NULL));时间随机数            resize即分配空间也创建对象，capacity等于size,可以通过下标访问。   reserve只修改capacity大小，不修改size大小，只分配空间 不创建对象 泵通过下标访问
+
+insert（elem）;//在容器中插入元素                         clear( ); //清空所有元素                              erase(pos); //删除pos迭代器所指的元素，返回下一个元素的迭代器            
+       
+earse(begmend);//删除区间（beg,end）的所有元素，返回下一个元素的迭代器                         earse(key); //删除元素中值为key的元素             m.insert(make_pair(2,20))//插入
+
+find（key）；//查找key是否存在，若存在，返回该键元素的迭代器；若不存在，返回setend();               count（key）；//统计key的元素个数          #define CEHUA 0
+
+find_if(v.begin(), v.end(), GreaterFive());查找范围内的数字
+
+#include<functional>//内建函数对象头文件       template<class T>T      算术仿函数： negate<int>n;  n(数值) //一元取反值     二元 plus加法仿函数     minus减法      multiplise乘法     divides除法      modulus取模      
+   template<class T>            关系仿函数:  bool equal_to<T>等于         bool not_equal_to不等于         bool greater大于        bool greater_equal大于等于        bool less小于        bool less_equal小于等于
+v2.resize(v.size()); //先开辟空间        transform(v.begin(), v.end(), v2.begin(), logical_not<bool>());//将v数据搬运到v2并取反值
+
+ min(v1.size(), v2.size())//两个对象，取小size值         ispunct();统计对象中标点符号数量          decltype(a)c; c的返回值类型是a的类型        toupper( c );将c中的对象换成大写
+	
+
+
+

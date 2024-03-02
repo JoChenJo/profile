@@ -1,0 +1,4 @@
+#include <numeric>
+
+std::accumulate(nums.begin(), nums.end(), 0); 
+std::accumulate 返回一个单一的累积值，该值是通过将 init 与序列中的每个元素进行某种操作（通常是通过加法）而得到的。

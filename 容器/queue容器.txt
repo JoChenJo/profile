@@ -1,0 +1,12 @@
+单向队列
+queue.push();	往队尾添加元素
+
+queue.pop()	从队头删除第一个元素
+
+queue.back()	返回最后一个元素
+
+queue.front()	返回第一个元素
+
+queue.empty()	判断堆栈是否为空
+
+queue.size()	返回栈的大小

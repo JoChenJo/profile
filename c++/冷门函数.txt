@@ -1,0 +1,7 @@
+std::search(v.begin(), v.end(), target.begin(), target.end()); 
+	用于容器中
+auto it = std::search(v.begin(), v.end(), target.begin(), target.end());
+再v中查找target的位置
+search函数返回源序列中目标序列首次出现位置的迭代器。如果目标序列未找到，则返回v.end()。
+
+lower_bound (a.begin(), a.end(), b);返回第一个不小于b的元素迭代器

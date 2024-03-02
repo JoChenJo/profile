@@ -1,0 +1,18 @@
+集合不允许重复字符串
+定义空集合  set() 
+
+set.add("")添加新元素
+
+set.remove("")移除元素
+
+set.pop() 随机取出一个元素，原集合元素被删除，返回被取出元素
+
+set.clear() 清空集合
+
+set.difference( set1 )   取出set 和set1 的差集（集合1有而集合2没有的）返回新集合
+
+set.difference_update( set1 )   消除  set 中 和set1  相同的元素
+
+set.union( set1 ) 将 set 和 set1 组合成新的集合，没有重复元素，返回新集合
+
+len(set) 统计 set 中元素个数

@@ -1,0 +1,7 @@
+EINTR	表示正常中断
+
+EAGAIN 别名 EWOULDBLOCK	 资源不可用，稍后再试。非阻塞模式下读取表示读取完毕
+
+EINPROGRESS	使用 connect() 函数尝试连接到一个远程服务器时，如果套接字是非阻塞的，
+		并且连接不能立即建立那么 connect() 函数可能会立即返回，并设置错误码为 EINPROGRESS
+

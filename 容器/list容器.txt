@@ -1,0 +1,56 @@
+赋值交换
+
+list.assign(begin, end)		将该区间数据复制给本身
+
+list.assign(n, elem)		将n个elem赋值给本身
+
+list.swap(list)			本身与lst交换元素
+===================================================================================
+操作大小
+
+list.size()			返回容器元素个数
+
+list.empty()			判断容器是否为空
+
+list.resize(num)		重新指定容器大小，变长则按默认填充，变短就删除
+
+list.resize(num, elem)		重新指定容器大小，变长则按elem填充，变短就删除
+
+========================================================================================
+插入删除
+
+list.push_back(elem)		在尾部插入一个元素
+
+list.pop_back()			删除最后一个元素
+
+list.push_front(elem)		在头部插入一个元素
+
+list.pop_front()		删除第一个元素
+
+list.insert(pos, elem)		在pos位置插入elem元素的拷贝，返回新数据的位置
+
+list.insert(pos, n, elem)	在pos位置插入n个elem数据，无返回值
+
+list.insert(pos, begin, end)	在pos位置插入该区间的数据，无返回值
+
+list.clear()			移除容器所有元素
+
+list.erase(begin, end)		删除该区间的数据，返回下一个数据的位置
+
+list.erase(pos)			删除pos位置的数据，返回下一个数据的位置
+
+list.remove(else)		删除所有与elem值匹配的元素
+
+=======================================================================================
+数据存储
+
+list.front()			返回第一个元素
+
+list.back()			返回最后一个元素
+
+===================================================================================
+反转和排序
+
+list.reverse()			反转链表
+
+list.sort()			链表排序

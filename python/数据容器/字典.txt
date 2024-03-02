@@ -1,0 +1,20 @@
+字典是键值对	不可以有重复key值
+{ key : value, key : value}
+
+定义空字典  {}  或  dict()
+dict[ key ] 通过key值可以找到对应value值，返回value
+
+字典嵌套
+dict = { "aaa" : { "AAA" : 111 }, "bbb" : { "BBB " : 222 } }
+
+dict[ " key " ] = " " 更新，添加键值对
+
+dict.pop(" key ") 删除键值对，并返回被删除的键值对
+
+dict.clear() 清空字典
+
+dict.keys() 返回字典全部key值
+
+for key in dict :   key取得的是dict的key值
+
+len(dict) 返回字典元素个数

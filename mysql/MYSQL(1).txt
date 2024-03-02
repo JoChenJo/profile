@@ -1,0 +1,41 @@
+数据库：
+	查询所有数据库：show  databases;
+
+	查询当前数据库：select  database();
+
+	创建数据库：create  database  [ if  not  exists 数据库存在不创建，否则创建] 数据库名  ---
+	[default charset 字符集(如utf8mb4、utf8等等) ]	 [collate排序规则]
+
+	删除数据库：drop  database  [ if  exists 数据库存在才删除，否则不删除]  数据库名;
+
+	使用数据库：use  数据库名;
+========================================================================
+日期：	date    YYYY-MM-DD	年-月-日
+	time    HH:mm:SS		时:分:秒
+	datetime	YYYY-MM-DD	HH:mm:SS	年-月-日  时:分:秒
+========================================================================
+DDL表：
+	查询当前数据库所有表：show  tables;
+
+	查询表结构,表内的字段：desc  表名;
+
+	查询指定表的建表语句：show  create  table  表名;显示详细信息
+
+	表的创建：create  table  表名{
+		字段1   字段1类型  	[comment  字段1注释]  [ 约束 ] ,
+		字段2    INT   	[comment  字段1注释]  [ 约束 ] ,
+		字段3   VARCHAR(1)	[comment  字段1注释]  [ 约束 ] ,
+	}[ comment  表注释 ];
+
+添加表的字段：		alter  table  表名  add  字段名  类型(长度)  [ comment 注释 ]   [ 约束 ];
+
+修改表的数据类型：		alter  table  表名  modify  字段名  新的数据类型（长度）;
+
+修改表的字段名和字段类型：	alter  table  表名  change  旧字段名  新字段名  类型（长度） [ comment 注释 ]   [ 约束 ];
+
+删除表的字段：		alter table  表名  drop  字段名;
+
+修改表名：		alter  table  表名  rename to  新表名;
+
+删除表：			drop  table [ if exists ] 表名;
+删除表并重新创建：		truncate  table  表名;	

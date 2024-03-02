@@ -1,0 +1,38 @@
+查询所有数据库：show databases;  
+查询当前数据库：select database();  
+创建：create database [if not exists] 数据库名 [default charset 字符集] [collate 排序规则];  
+删除：drop database [if exists] 数据库名;  
+使用：use 数据库名;  
+  
+ddl表  
+查询当前数据库所有表 show tables;  
+查询表结构：desc 表名;  
+查询指定表的建表语句：show create table 表名;  
+  
+修改数据类型：alter table 表名 modify 字段名 新数据类型（长度）;  
+修改字段名和字段类型：alter table 表名 change 旧字段名 新字段名 类型（长度）[comment注释] [约束];  
+  
+删除字段：alter table 表名 drop 字段名;   
+  
+修改表名：alter table 表名 rename to 新表名;  
+  
+给指定字段添加数据：insert into 表名（字段名1，字段名2，...）values（值1，值2，...）;  
+  
+给全部字段添加数据：insert into 表名 values（值1，值2，...）;  
+  
+批量添加数据：insert into 表名（字段名1，字段名2，...） values（值1，值2，...），（值1，值2，...），（值1，值2，...）;  
+  
+insert into 表名 values（值1，值2，...），（值1，值2，...），（值1，值2，...）;  
+  
+修改数据：update 表名 set 字段名1 =值1，字段名2 = 值2，...[where 条件];  
+  
+删除数据：delete from 表名 [where 条件];  
+  
+删除表内所有数据：truncate table 表名;
+
+删除表内字段数据
+UPDATE friend  
+SET id = NULL, friendId = NULL  
+WHERE id = some_value;
+
+

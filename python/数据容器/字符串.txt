@@ -1,0 +1,14 @@
+str = " itheima  and  itcast"
+
+str.index("and") 返回字符串下标
+
+str.replace("it", "程序") 将str中it替换成程序，返回替换后的字符串
+
+str.split(" ")将str按照" "切分成多个列表,返回列表
+
+str.strip() 取出字符串前后的空格
+str.strip("12") 去除前后指定字符,"1" 和 "2"
+
+str.count("")统计str中指定元素的个数，返回数量
+
+len(str) 统计str中元素的数量，返回数量

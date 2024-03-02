@@ -1,0 +1,13 @@
+unordered_map
+
+map.emplace(1,"one");//直接插入元素
+
+map.erase(1);//删除元素
+
+map.insert(pair<int, int>(1, 10));插入元素
+
+map.swap(map1);交换元素
+
+map.count(3);通国际key为3的元素数量
+
+

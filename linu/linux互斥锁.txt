@@ -1,0 +1,175 @@
+线程同步：
+	协同步调，对公共区域数据按序访问。防止数据混乱，产生与时间有关的错误。
+锁的使用：
+	建议锁！对公共数据进行保护。所有线程【应该】在访问公共数据前先拿锁再访问。但，锁本身不具备强制性。
+使用mutex（互斥量、互斥锁）一般步骤：
+	1、pthread_mutex_t  lock；	创建锁
+	2、pthread_mutex_init；	初始化		1
+	3、pthread_mutex_lock；	加锁		1--	-->0
+	4、访问共享数据（stdout）
+	5、pthrad_mutext_unlock（）；解锁		0++	-->1
+	6、pthread_mutex_destroy；销毁锁
+
+	初始化互斥量：
+		pthread_mutex_t  mutex；
+		1、pthread_mutex_init（&cond，NULL）；		动态初始化。
+		2、pthread_cond_t  cond = PTHREAD_COND_INITIALIZER;；	静态初始化。
+
+	注意事项：
+		尽量保证锁的粒度，越小越好。（访问共享数据前，加锁。访问结束【立即】解锁。）
+		互斥锁，本质是结构体。我们可以看成整数。初值为1.（pthread_mutex_init（）函数调用成功。）
+		加锁：--操作，阻塞线程。
+		解锁：++操作，唤醒阻塞在锁上的线程。
+		try锁：尝试加锁，成功--。失败，返回。
+restrict关键字：
+	用来限定指针变量。被该关键字限定的指针变量所指向的内存操作，必须由本指针完成。
+死锁：
+	是使用锁不恰当导致的现象：
+		1、对一个锁反复lock。
+		2、两个线程，各自持有一把锁，请求另一把。
+读写锁：
+	锁只有一把。以读方式给数据加锁--读锁。以写方式给数据加锁--写锁。
+	读共享，写独占。
+	写锁优先级高。
+	相较于互斥量而言，当读线程多的时候，提高访问效率
+	pthread_rwlock_t   rwlock；
+	pthread_rwlock_init（&rwlock，NULL）；
+	pthread_rwlock_rdlock（&rwlock）；
+	pthread_rwlock_wrlock（&rwlock）；
+	pthread_rwlock_unlock（&rwlock）；
+	pthread_rwlock_destroy（&rwlock）；
+条件变量：
+	本身不是锁！但是通常结合锁来使用。mutex
+	pthread_cond_t   cond；
+	初始化条件变量：
+		1、pthread_cond_init（&cond，NULL）；			动态初始化。
+		2、pthread_cond_t   cond = PTHREAD_COND_INITIALIZER;	静态初始化。
+	pthread_cond_signal（）；唤醒阻塞在条件变量上的（至少）一个线程。
+	pthread_cond_broadcast（）；唤醒阻塞在条件变量上的所有线程。
+	【要求，能够借助条件变量，完成生成者消费者】
+信号量：	
+	应用于线程、进程间同步。
+	相当于初始化值为N的互斥量。N值，表示可以同时访问共享数据区的数据线程数。
+	函数：
+		sem_t  sem；定义类型。
+		int sem_init（sem_t  *sem，int  pshared，unsigned  int value）；
+		参数：
+			sem：信号量
+			pshared：		0：用于线程间同步
+					1：用于进程间同步
+			value：N值。（指定同时访问的线程数）
+
+		sem_destroy（）；
+		sem_wait（）；	一次调用，做一次--操作，当信号量的值为0时，再次--就会阻塞。（对比pthread_mutex_lock）
+		sem_post（）；	一次调用，做一次++操作，当信号量的值为N时，再次++就会阻塞。（对比pthread_mutex_unlock）
+
+信号共性：
+	简单、不能携带大量信息、满足条件才发送。
+信号的特质：
+	信号是软件层面上的“中断”。一旦信号产生，无论程序执行到什么位置，必须立即停止运行，处理信号，处理结束，再继续执行后续指令。
+	所有信号的产生及处理全部都是由【内核】完成的。
+信号相关的概念：
+	产生信号：
+		1、按键产生
+		2、系统调用产生
+		3、软件条件产生
+		4、硬件异常产生
+		5、命令产生
+	概念：
+		未决：产生与递达之间的状态。
+		递达：产生并且送达到进程。直接被内核处理掉。
+		信号处理方式：执行默认处理动作、忽略、捕捉（自定义）
+		
+		阻塞信号集（信号屏蔽字）：本质：位图。用来记录信号的屏蔽状态。一旦被屏蔽的信号，在解除屏蔽前，一直处于未状态。
+		未决信号集：本质：位图。用来记录信号的处理状态。该信号集中的信号，表示，已经产生，但尚未被处理。
+信号4要素：
+	信号使用之前，应先确定4要素，而后再用！！！
+	信号编号、信号名称、信号对应事件、信号默认处理动作。
+kill命令和kill函数：
+	int kill（pid_t  pid，int  signum）
+		pid：	>0：发送信号给指定进程
+			=0：发送信号给调用kill函数的那个进程处于同一进程组的进程。
+			<-1：取绝对值，发送信号给该绝对值所对应的金策韩国女足的所有组员。
+			=-1：发送信号给，有权限发送的所有进程。
+		signum：待发送信号
+	返回值：
+		成功：0
+		失败:-1  errno
+alarm函数：
+	定时发送SIGALRM给当前进程。
+	unsigned  int  alarm（unsigned  int  seconds）；
+		seconds：定时秒数
+		返回值：上次定时剩余时间。
+			无错误现象。
+	time命令：查看程序执行时间。实际时间=用户时间+内核时间+等待时间。	-->优化瓶颈  IO
+setitimer函数：
+	int  setitimer（int  which，const  struct  itimerval  *new_value，struct  itimerval  *old_value）；
+	参数：
+		new_value：定时秒数
+			类型：structitimerval  {
+				struct  timerval {
+					time_t	       tv_sec;	/*seconds*/
+					suseconds_t     tv_usec;	/*mi croseconds*/	
+				} it_interval；/*next  value */
+				struct  timerval  {
+					time_t		tv_sec;		/*seconds*/
+					suseconds_t	tv_usec;		/*mi crosecpnds*/
+				}it_value;
+		}；
+		old_value：传出参数，上次定时剩余时间。
+		e.g. :
+			struct  itimerval  new_t ;
+			struct  itimerval  old_t ;
+			new_t.it_interval.tv_sec = 1;
+			new_t.it_value.tv_sec = 0;
+			new_t.it_value.tv_usec = 0;
+			
+			setitimer（&new_t,old_t）
+
+	返回值：
+		成功：0
+		失败：-1  errno
+其他几个发送信号函数：
+	int  raise（int  sig）；
+	void  abort（void）；
+信号集操作函数：
+	sigset_t  set;	自定义信号集。
+	sigemptyset（sigset_t  *set）；	清空信号集
+	sigfillset（sigset_t  *set）；	全部置1
+	sigaddset（sigset_t  *set，int  signum）；	将一个信号添加到信号集中
+	sigdelset（sigset_t  *set，int  signum）；	将一个信号从集合中移除
+	sigismember（const  sigset_t  *set，int  signum）；判断一个信号是否在集合中。在-->1，不在-->0
+设置信号屏蔽字和解除屏蔽：
+	sigprocmask（int  how，const  sigset_t  *set，sigset_t  *oldset）；
+		how：	SIG_BLOCK：	设置阻塞
+			SIG_UNBLOCK；	取消阻塞
+			SIG_SETMASK：	用自定义set替换mask。
+		set：	自定义set
+		oldset：	旧有的mask。
+查看未决信号集：
+	int  sigpending（sigset_t  *set）；
+		set：传出的未决信号集
+信号捕捉：
+
+signal（ int signum , sighandler_t handler ）；
+	signum: 要捕捉的信号
+
+            	 handler: 捕捉到信号要如何处理
+               		 - SIG_IGN ： 忽略信号
+               		 - SIG_DFL ： 使用信号默认的行为
+                	- 回调函数 :  这个函数是内核调用，程序员只负责写，捕捉到信号后如何去处理信号。
+
+
+int sigaction( int signum , const struct sigaction *act , struct sigaction *oldact );
+		- signum : 需要捕捉的信号的编号或者宏值（信号的名称）
+           		 - act ：捕捉到信号之后的处理动作
+           		 - oldact : 上一次对信号捕捉相关的设置，一般不使用，传递NULL
+      		  - 返回值：
+         		   成功 0
+        		    失败 -1
+
+
+信号捕捉特性：
+	1、捕捉函数执行期间，信号屏蔽字  由mask -->sa_mask，捕捉函数执行结束。恢复回mask
+	2、捕捉函数执行期间，本信号自动给被屏蔽（sa_flgs = 0)。
+	3、捕捉函数执行期间，被屏蔽信号多次发送，解除屏蔽后只处理一次！
