@@ -55,10 +55,17 @@ string获取想要的子串
 string substr(int pos = 0;int n = npos)const;//返回由pos位置开始的n个字符组成的字符串
 substr(pos, len)：从 pos 位置开始，获取长度为 len 的子串。
 substr(pos)：从 pos 位置开始，获取直到字符串末尾的所有字符。
-
+while (std::getline(iss, token, ' ')) {  // 以空格为分隔符
+    tokens.push_back(token);
+}
+=============================================================================================
 strpbrk（char*,  "字符串"）从 字符串 位置开始，获取直到字符串末尾的所有字符。返回char*
 strchr(char*, char)	从 字符 位置开始，获取直到字符串末尾的所有字符。返回char*
 strtok();按照空格拆分字符串
 strncat(str1, str2, len);将字符串str2前len个字符拼接到str1后面
 
-
+字符串拷贝
+strcpy(char*a,char*b)	将b中的字符拷贝到a中，不会做边界检测，不处理源和目标字符串重叠的情况
+strncpy（char*a,char*b,int n)	将b中的n个数据拷贝到a中，处理源和目标字符串重叠的情况
+memcpy(a, b, n)	将b中的n个元素复制到a中，不止能复制字符串，不处理源和目标字符串重叠的情况
+memmove(a,b,n)	将b中的n个元素复制到a中，不止能复制字符串，处理源和目标字符串重叠的情况
