@@ -1,0 +1,59 @@
+A：	already：已经		application：应用程序	aspect：方面、特色	available：可用
+	attrib：属性
+
+B：	build：构建		bound：绑定
+
+C：	compile：编译		commands：命令		collect：收集		current：当前
+	chart：图表		caption：标题		contents：内容		change:改变
+	clear：清晰的
+
+D：	directory：目录		dump：丢弃、转储	draw：画		device：设备
+
+E：	enable:激活，启用	export：出口		explicit：显示的	exception：异常	
+	extent：范围、长度	expire：到期		expression:表达式
+
+F：	format：格式		failed：失败的		future：未来		finish：完成
+	found：发现		filter：过滤器
+G：	gesture：手势、姿势	generate：生成
+
+H：	handle：处理		handshaking：握手
+
+I：	Invalid：无效的		instance：实例		location：位置
+
+J：
+
+K：
+
+L：	libs：填词		local：当地的		location：位置
+
+M：	method：方法		manages：管理
+
+N：	nearest：最近的
+
+O：
+
+P：	package：包		process:过程		post：邮寄，帖子	previous：前一个
+	positions：定位
+
+Q：	query：查询
+
+R：	required：要求		response：响应		resource：资源		result：结果
+	ratio：比例		received：收到、拿到
+
+S：	shared：共享		standard：标准		section：部分		such：这样的
+	scene：场景		scaled：按比例缩小	sound：声音		step：一步
+	success：成功		existing：现有的
+
+T：	then：然后		task：任务		table：表格		tick：钟表声
+	target：目标
+U：	union:联合
+
+V：	version：版本		view：视图		context：上下文
+
+W：
+
+X：
+
+Y：
+
+Z：
